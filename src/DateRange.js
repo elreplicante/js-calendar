@@ -23,8 +23,15 @@ var DateRange = (function() {
       },
       useWeek: function() {
         updateRangeUsingNewPeriod(week);
+      },
+      next: function() {
+        nextRange();
       }
     };
+
+    function nextRange() {
+      setRange(moment("2014-11-17"), moment("2014-11-23"));
+    }
 
     function updateRangeUsingNewPeriod(newPeriod) {
       period = newPeriod;
