@@ -1,9 +1,9 @@
 var DateRange = (function() {
-  return function(clock) {
+  return function(clock, dateFns) {
     var startDate, endDate,
-      month = Month(),
-      week = Week(),
-      year = Year(),
+      month = Month(dateFns),
+      week = Week(dateFns),
+      year = Year(dateFns),
       period = week;
 
     updateRange();
@@ -34,7 +34,7 @@ var DateRange = (function() {
       endDate = newEndDate.toDate();
     }
 
-    function Month() {
+    function Month(dateFns) {
       return {
         updateRange: function(currentDate) {
           setRange(firstDayOfMonth(currentDate), lastDayOfMonth(currentDate));
@@ -42,16 +42,15 @@ var DateRange = (function() {
       };
 
       function firstDayOfMonth(date) {
-        return moment(date).date(1);
+        return dateFns.firstDayOfMonth(date);
       }
 
       function lastDayOfMonth(date) {
-        var daysInMonth = moment(date).daysInMonth();
-        return firstDayOfMonth(date).add(daysInMonth - 1, "days");
+        return dateFns.lastDayOfMonth(date);
       }
     }
 
-    function Week() {
+    function Week(dateFns) {
       return {
         updateRange: function(currentDate) {
           setRange(monday(currentDate), sunday(currentDate));
@@ -59,15 +58,15 @@ var DateRange = (function() {
       };
 
       function monday(date) {
-        return moment(date).day("Monday");
+        return dateFns.monday(date);
       }
 
       function sunday(date) {
-        return monday(date).add(6, "days");
+        return dateFns.sunday(date);
       }
     }
 
-    function Year() {
+    function Year(dateFns) {
       return {
         updateRange: function(currentDate) {
           setRange(firstDayOfYear(currentDate), lastDayOfYear(currentDate));
@@ -75,11 +74,11 @@ var DateRange = (function() {
       };
 
       function firstDayOfYear(date) {
-        return moment(date).dayOfYear(1);
+        return dateFns.firstDayOfYear(date);
       }
 
       function lastDayOfYear(date) {
-        return firstDayOfYear(date).add(1, "years").add(-1, "days");
+        return dateFns.lastDayOfYear(date);
       }
     }
   };

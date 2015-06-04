@@ -6,14 +6,14 @@ describe('DateRange', function() {
 
   it('should show the current week on creation ', function() {
     spyOn(clock, 'currentDate').and.returnValue("2014-11-11");
-    dateRange = DateRange(clock);
+    dateRange = DateRange(clock, dateManipulations);
 
     expectThatDateRange(dateRange).startsOn("2014-11-10").andEndsOn("2014-11-16");
   });
 
   it('should show the current month when a month period is selected', function() {
     spyOn(clock, 'currentDate').and.returnValue("2014-11-11");
-    dateRange = DateRange(clock);
+    dateRange = DateRange(clock, dateManipulations);
 
     dateRange.useMonth();
 
@@ -22,7 +22,7 @@ describe('DateRange', function() {
 
   it('should show the current year when a year period is selected', function() {
     spyOn(clock, 'currentDate').and.returnValue("2014-11-11");
-    dateRange = DateRange(clock);
+    dateRange = DateRange(clock, dateManipulations);
 
     dateRange.useYear();
 
