@@ -25,15 +25,19 @@ var dateManipulations = (function() {
   }
 
   function forwardOneWeek(date) {
-    return moment(date).add(1, "weeks");
+    return moveDate(date, "weeks", 1);
   }
 
   function forwardOneMonth(date) {
-    return moment(date).add(1, "months");
+    return moveDate(date, "months", 1);
   }
 
   function forwardOneYear(date) {
-    return moment(date).add(1, "years");
+    return moveDate(date, "years", 1);
+  }
+
+  function moveDate(date, period, displacement) {
+    return moment(date).add(displacement, period)
   }
 
   function dateOf(fn) {
