@@ -8,7 +8,7 @@ describe('DateRange', function() {
     spyOn(clock, 'currentDate').and.returnValue("2014-11-11");
     dateRange = DateRange(clock);
 
-    expectDateRange("2014-11-10", "2014-11-16", dateRange);
+    expectThatDateRange(dateRange).startsOn("2014-11-10").andEndsOn("2014-11-16");
   });
 
   it('should show the current month when a month period is selected', function() {
@@ -17,11 +17,19 @@ describe('DateRange', function() {
 
     dateRange.useMonth();
 
-    expectDateRange("2014-11-01", "2014-11-30", dateRange);
+    expectThatDateRange(dateRange).startsOn("2014-11-01").andEndsOn("2014-11-30");
   });
 
-  function expectDateRange(startDate, endDate, dateRange) {
-    expect(dateRange.startDate()).toEqual(moment(startDate).toDate());
-    expect(dateRange.endDate()).toEqual(moment(endDate).toDate());
+  function expectThatDateRange(dateRange) {
+    return {
+      startsOn: function (startDate) {
+        return {
+          andEndsOn: function(endDate) {
+            expect(dateRange.startDate()).toEqual(moment(startDate).toDate());
+            expect(dateRange.endDate()).toEqual(moment(endDate).toDate());
+          }
+        };
+      }
+    };
   }
 });
