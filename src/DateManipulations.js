@@ -81,8 +81,6 @@ var dateManipulations = (function() {
 
 
   return {
-    firstDayOfWeek: dateOf(firstDayOfWeek),
-    lastDayOfWeek: dateOf(lastDayOfWeek),
     oneWeekAheadOf: dateOf(oneWeekAhead),
     oneMonthAheadOf: dateOf(oneMonthAhead),
     oneYearAheadOf: dateOf(oneYearAhead),
