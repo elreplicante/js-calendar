@@ -63,6 +63,10 @@ var DateRange = (function() {
 
         nextDate: function(currentDate) {
           return dateFns.nextMonth(currentDate);
+        },
+
+        previousDate: function(currentDate) {
+          return dateFns.previousMonth(currentDate);
         }
 
       };

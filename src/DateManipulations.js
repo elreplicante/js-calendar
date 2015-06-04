@@ -24,20 +24,24 @@ var dateManipulations = (function() {
     return firstDayOfMonth(date).add(daysInMonth - 1, "days");
   }
 
-  function forwardOneWeek(date) {
+  function nextWeek(date) {
     return moveDate(date, "weeks", 1);
   }
 
-  function forwardOneMonth(date) {
+  function nextMonth(date) {
     return moveDate(date, "months", 1);
   }
 
-  function forwardOneYear(date) {
+  function nextYear(date) {
     return moveDate(date, "years", 1);
   }
 
-  function backwardOneWeek(date) {
+  function previousWeek(date) {
     return moveDate(date, "weeks", -1);
+  }
+
+  function oneMonthBack(date) {
+    return moveDate(date, "months", -1);
   }
 
   function moveDate(date, period, displacement) {
@@ -57,9 +61,10 @@ var dateManipulations = (function() {
     lastDayOfWeek: dateOf(lastDayOfWeek),
     firstDayOfMonth: dateOf(firstDayOfMonth),
     lastDayOfMonth: dateOf(lastDayOfMonth),
-    nextWeek: dateOf(forwardOneWeek),
-    nextMonth: dateOf(forwardOneMonth),
-    nextYear: dateOf(forwardOneYear),
-    previousWeek: dateOf(backwardOneWeek)
+    nextWeek: dateOf(nextWeek),
+    nextMonth: dateOf(nextMonth),
+    nextYear: dateOf(nextYear),
+    previousWeek: dateOf(previousWeek),
+    previousMonth: dateOf(oneMonthBack)
   };
 })();

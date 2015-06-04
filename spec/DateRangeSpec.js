@@ -76,6 +76,14 @@ describe('DateRange', function() {
 
       expectThatDateRange(dateRange).startsOn("2014-11-03").andEndsOn("2014-11-09");
     });
+
+    it('should show the previous month in case of a month period', function() {
+      dateRange.useMonth();
+
+      dateRange.previous();
+
+      expectThatDateRange(dateRange).startsOn("2014-10-01").andEndsOn("2014-10-31");
+    });
   });
 
   function expectThatDateRange(dateRange) {
