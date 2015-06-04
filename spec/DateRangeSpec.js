@@ -38,13 +38,13 @@ describe('DateRange', function() {
   });
 
   describe('when moving to the next period', function() {
-    it('should contain the next week in case of a week period', function() {
+    it('should contain the next week in case of using a week period', function() {
       dateRange.next();
 
       expectThatDateRange(dateRange).startsOn("2014-11-17").andEndsOn("2014-11-23");
     });
 
-    it('should contain the next month in case of a month period', function() {
+    it('should contain the next month in case of using a month period', function() {
       dateRange.useMonth();
 
       dateRange.next();
@@ -52,7 +52,7 @@ describe('DateRange', function() {
       expectThatDateRange(dateRange).startsOn("2014-12-01").andEndsOn("2014-12-31");
     });
 
-    it('should contain the next year in case of a year period', function() {
+    it('should contain the next year in case of using a year period', function() {
       dateRange.useYear();
 
       dateRange.next();
@@ -62,7 +62,7 @@ describe('DateRange', function() {
   });
 
   describe('when moving two periods ahead', function() {
-    it('should contain the week after the next week in case of a week period', function() {
+    it('should contain the week after the next week in case of using a week period', function() {
       dateRange.next();
       dateRange.next();
 
@@ -71,13 +71,13 @@ describe('DateRange', function() {
   });
 
   describe('when moving to the previous period', function() {
-    it('should contain the previous week in case of a week period', function() {
+    it('should contain the previous week in case of using a week period', function() {
       dateRange.previous();
 
       expectThatDateRange(dateRange).startsOn("2014-11-03").andEndsOn("2014-11-09");
     });
 
-    it('should contain the previous month in case of a month period', function() {
+    it('should contain the previous month in case of using a month period', function() {
       dateRange.useMonth();
 
       dateRange.previous();
@@ -85,7 +85,7 @@ describe('DateRange', function() {
       expectThatDateRange(dateRange).startsOn("2014-10-01").andEndsOn("2014-10-31");
     });
 
-    it('should contain the previous year in case of a year period', function() {
+    it('should contain the previous year in case of using a year period', function() {
       dateRange.useYear();
 
       dateRange.previous();
@@ -94,7 +94,7 @@ describe('DateRange', function() {
     });
   });
 
-  describe("when going back to current period", function() {
+  describe("when moving back to the current period", function() {
     function moveAwayFromCurrentDate(dateRange) {
       dateRange.previous();
       dateRange.previous();
