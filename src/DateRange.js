@@ -1,6 +1,9 @@
 var DateRange = (function() {
   return function(clock, dateFns) {
-    var startDate, endDate,
+    var dateRange = {
+        startDate: void 0,
+        endDate: void 0
+      },
       month = Month(dateFns),
       week = Week(dateFns),
       year = Year(dateFns),
@@ -11,10 +14,10 @@ var DateRange = (function() {
 
     return {
       startDate: function() {
-        return startDate;
+        return dateRange.startDate;
       },
       endDate: function() {
-        return endDate;
+        return dateRange.endDate;
       },
       useMonth: function() {
         updateRangeUsingNewPeriod(month);
@@ -27,7 +30,7 @@ var DateRange = (function() {
       },
       next: next,
       previous: previous,
-      current:current
+      current: current
     };
 
     function current() {
@@ -51,17 +54,14 @@ var DateRange = (function() {
     }
 
     function setRange(newStartDate, newEndDate) {
-      startDate = newStartDate;
-      endDate = newEndDate;
+      dateRange.startDate = newStartDate;
+      dateRange.endDate = newEndDate;
     }
 
     function Month(dateFns) {
       return {
         updateRange: function(currentDate) {
-          setRange(
-            dateFns.firstDayOfMonth(currentDate),
-            dateFns.lastDayOfMonth(currentDate)
-          );
+          dateRange = dateFns.monthPeriodContaining(currentDate);
         },
 
         nextDate: function(currentDate) {

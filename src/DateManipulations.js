@@ -58,18 +58,24 @@ var dateManipulations = (function() {
     };
   }
 
+  function monthPeriodContaining(date) {
+    return {
+      startDate: firstDayOfMonth(date).toDate(),
+      endDate: lastDayOfMonth(date).toDate()
+    };
+  }
+
   return {
     firstDayOfYear: dateOf(firstDayOfYear),
     lastDayOfYear: dateOf(lastDayOfYear),
     firstDayOfWeek: dateOf(firstDayOfWeek),
     lastDayOfWeek: dateOf(lastDayOfWeek),
-    firstDayOfMonth: dateOf(firstDayOfMonth),
-    lastDayOfMonth: dateOf(lastDayOfMonth),
     oneWeekAheadOf: dateOf(oneWeekAhead),
     oneMonthAheadOf: dateOf(oneMonthAhead),
     oneYearAheadOf: dateOf(oneYearAhead),
     oneWeekBackFrom: dateOf(oneWeekBack),
     oneMonthBackFrom: dateOf(oneMonthBack),
-    oneYearBackFrom: dateOf(oneYearBack)
+    oneYearBackFrom: dateOf(oneYearBack),
+    monthPeriodContaining: monthPeriodContaining
   };
 })();
