@@ -25,31 +25,27 @@ var dateManipulations = (function() {
   }
 
   function oneWeekAhead(date) {
-    return moveDate(date, "weeks", 1);
+    return moment(date).add("weeks", 1);
   }
 
   function oneMonthAhead(date) {
-    return moveDate(date, "months", 1);
+    return moment(date).add("months", 1);
   }
 
   function oneYearAhead(date) {
-    return moveDate(date, "years", 1);
+    return moment(date).add("years", 1);
   }
 
   function oneWeekBack(date) {
-    return moveDate(date, "weeks", -1);
+    return moment(date).add("weeks", -1);
   }
 
   function oneMonthBack(date) {
-    return moveDate(date, "months", -1);
+    return moment(date).add("months", -1);
   }
 
   function oneYearBack(date) {
-    return moveDate(date, "years", -1);
-  }
-
-  function moveDate(date, period, displacement) {
-    return moment(date).add(displacement, period)
+    return moment(date).add("years", -1);
   }
 
   function dateOf(fn) {
