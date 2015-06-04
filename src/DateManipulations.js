@@ -72,6 +72,14 @@ var dateManipulations = (function() {
     };
   }
 
+  function weekPeriodContaining(date) {
+    return {
+      startDate: firstDayOfWeek(date).toDate(),
+      endDate: lastDayOfWeek(date).toDate()
+    };
+  }
+
+
   return {
     firstDayOfWeek: dateOf(firstDayOfWeek),
     lastDayOfWeek: dateOf(lastDayOfWeek),
@@ -82,6 +90,7 @@ var dateManipulations = (function() {
     oneMonthBackFrom: dateOf(oneMonthBack),
     oneYearBackFrom: dateOf(oneYearBack),
     monthPeriodContaining: monthPeriodContaining,
-    yearPeriodContaining: yearPeriodContaining
+    yearPeriodContaining: yearPeriodContaining,
+    weekPeriodContaining: weekPeriodContaining
   };
 })();

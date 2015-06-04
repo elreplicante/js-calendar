@@ -71,17 +71,13 @@ var DateRange = (function() {
         previousDate: function(currentDate) {
           return dateFns.oneMonthBackFrom(currentDate);
         }
-
       };
     }
 
     function Week(dateFns) {
       return {
         updateRange: function(currentDate) {
-          setRange(
-            dateFns.firstDayOfWeek(currentDate),
-            dateFns.lastDayOfWeek(currentDate)
-          );
+          dateRange = dateFns.weekPeriodContaining(currentDate);
         },
 
         nextDate: function(currentDate) {
@@ -97,10 +93,6 @@ var DateRange = (function() {
     function Year(dateFns) {
       return {
         updateRange: function(currentDate) {
-          // setRange(
-          //   dateFns.firstDayOfYear(currentDate),
-          //   dateFns.lastDayOfYear(currentDate)
-          // );
           dateRange = dateFns.yearPeriodContaining(currentDate);
         },
 
