@@ -24,12 +24,18 @@ var dateManipulations = (function() {
     return firstDayOfMonth(date).add(daysInMonth - 1, "days");
   }
 
+  function dateOf(fn) {
+    return function(date) {
+      return fn(date).toDate();
+    };
+  }
+
   return {
-    firstDayOfYear: firstDayOfYear,
-    lastDayOfYear: lastDayOfYear,
-    firstDayOfWeek: firstDayOfWeek,
-    lastDayOfWeek: lastDayOfWeek,
-    firstDayOfMonth: firstDayOfMonth,
-    lastDayOfMonth: lastDayOfMonth
+    firstDayOfYear: dateOf(firstDayOfYear),
+    lastDayOfYear: dateOf(lastDayOfYear),
+    firstDayOfWeek: dateOf(firstDayOfWeek),
+    lastDayOfWeek: dateOf(lastDayOfWeek),
+    firstDayOfMonth: dateOf(firstDayOfMonth),
+    lastDayOfMonth: dateOf(lastDayOfMonth)
   };
 })();

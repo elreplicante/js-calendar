@@ -30,7 +30,7 @@ var DateRange = (function() {
     };
 
     function nextRange() {
-      setRange(moment("2014-11-17"), moment("2014-11-23"));
+      setRange(moment("2014-11-17").toDate(), moment("2014-11-23").toDate());
     }
 
     function updateRangeUsingNewPeriod(newPeriod) {
@@ -43,8 +43,8 @@ var DateRange = (function() {
     }
 
     function setRange(newStartDate, newEndDate) {
-      startDate = newStartDate.toDate();
-      endDate = newEndDate.toDate();
+      startDate = newStartDate;
+      endDate = newEndDate;
     }
 
     function Month(dateFns) {
