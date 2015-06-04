@@ -49,8 +49,8 @@ var DateRange = (function() {
       return {
         updateRange: function(currentDate) {
           setRange(
-            dateFns.monday(currentDate),
-            dateFns.sunday(currentDate)
+            dateFns.firstDayOfWeek(currentDate),
+            dateFns.lastDayOfWeek(currentDate)
           );
         }
       };

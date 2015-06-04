@@ -7,12 +7,12 @@ var dateManipulations = (function() {
     return firstDayOfYear(date).add(1, "years").add(-1, "days");
   }
 
-  function monday(date) {
+  function firstDayOfWeek(date) {
     return moment(date).day("Monday");
   }
 
-  function sunday(date) {
-    return monday(date).add(6, "days");
+  function lastDayOfWeek(date) {
+    return firstDayOfWeek(date).add(6, "days");
   }
 
   function firstDayOfMonth(date) {
@@ -27,8 +27,8 @@ var dateManipulations = (function() {
   return {
     firstDayOfYear: firstDayOfYear,
     lastDayOfYear: lastDayOfYear,
-    monday: monday,
-    sunday: sunday,
+    firstDayOfWeek: firstDayOfWeek,
+    lastDayOfWeek: lastDayOfWeek,
     firstDayOfMonth: firstDayOfMonth,
     lastDayOfMonth: lastDayOfMonth
   };
