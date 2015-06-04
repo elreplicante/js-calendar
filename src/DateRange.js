@@ -1,11 +1,37 @@
 var DateRange = (function() {
   return function(clock) {
     var startDate,
-    endDate,
-    WEEK_PERIOD = "WEEK",
-    MONTH_PERIOD = "MONTH",
-    YEAR_PERIOD = "YEAR",
-    period = WEEK_PERIOD;
+      endDate,
+      WEEK_PERIOD = "WEEK",
+      MONTH_PERIOD = "MONTH",
+      YEAR_PERIOD = "YEAR",
+      period = WEEK_PERIOD,
+
+      Month = (function() {
+        return {
+          updateRange: function(currentDate) {
+            setRange(firstDayOfMonth(currentDate), lastDayOfMonth(currentDate));
+          }
+        };
+      })(),
+
+      WEEK = (function() {
+        return {
+          updateRange: function(currentDate) {
+            setRange(monday(currentDate), sunday(currentDate));
+          }
+        };
+      })(),
+
+      YEAR = (function() {
+        return {
+          updateRange: function(currentDate) {
+            setRange(firstDayOfYear(currentDate), lastDayOfYear(currentDate));
+          }
+        };
+      })(),
+
+      periodObject = WEEK;
 
     updateRange(clock.currentDate());
 
@@ -27,9 +53,10 @@ var DateRange = (function() {
     };
 
     function updateRange(currentDate) {
-      if(usingWeekPeriod()) {
-        setRange(monday(currentDate), sunday(currentDate));
-      } else if(usingMonthPeriod()) {
+      if (usingWeekPeriod()) {
+        //setRange(monday(currentDate), sunday(currentDate));
+        periodObject.updateRange(currentDate);
+      } else if (usingMonthPeriod()) {
         setRange(firstDayOfMonth(currentDate), lastDayOfMonth(currentDate));
       } else {
         setRange(firstDayOfYear(currentDate), lastDayOfYear(currentDate));
@@ -71,7 +98,7 @@ var DateRange = (function() {
     }
 
     function lastDayOfYear(date) {
-      return firstDayOfYear(date).add(1,"years").add(-1, "days");
+      return firstDayOfYear(date).add(1, "years").add(-1, "days");
     }
   };
 })();
