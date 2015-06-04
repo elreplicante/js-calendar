@@ -36,6 +36,10 @@ var dateManipulations = (function() {
     return moveDate(date, "years", 1);
   }
 
+  function backwardOneWeek(date) {
+    return moveDate(date, "weeks", -1);
+  }
+
   function moveDate(date, period, displacement) {
     return moment(date).add(displacement, period)
   }
@@ -55,6 +59,7 @@ var dateManipulations = (function() {
     lastDayOfMonth: dateOf(lastDayOfMonth),
     nextWeek: dateOf(forwardOneWeek),
     nextMonth: dateOf(forwardOneMonth),
-    nextYear: dateOf(forwardOneYear)
+    nextYear: dateOf(forwardOneYear),
+    previousWeek: dateOf(backwardOneWeek)
   };
 })();

@@ -70,6 +70,14 @@ describe('DateRange', function() {
     });
   });
 
+  describe('when moving to the previous period', function() {
+    it('should show the previous week in case of a week period', function() {
+      dateRange.previous();
+
+      expectThatDateRange(dateRange).startsOn("2014-11-03").andEndsOn("2014-11-09");
+    });
+  });
+
   function expectThatDateRange(dateRange) {
     return {
       startsOn: function(startDate) {

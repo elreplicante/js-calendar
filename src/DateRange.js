@@ -27,8 +27,15 @@ var DateRange = (function() {
       },
       next: function() {
         nextRange();
-      }
+      },
+      previous: previous
+
     };
+
+    function previous() {
+      currentDate = period.previousDate(currentDate);
+      period.updateRange(currentDate);
+    }
 
     function nextRange() {
       currentDate = period.nextDate(currentDate);
@@ -72,6 +79,10 @@ var DateRange = (function() {
 
         nextDate: function(currentDate) {
           return dateFns.nextWeek(currentDate);
+        },
+
+        previousDate: function(currentDate) {
+          return dateFns.previousWeek(currentDate);
         }
       };
     }
