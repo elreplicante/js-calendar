@@ -20,6 +20,15 @@ describe('DateRange', function() {
     expectThatDateRange(dateRange).startsOn("2014-11-01").andEndsOn("2014-11-30");
   });
 
+  it('should show the current year when a year period is selected', function() {
+    spyOn(clock, 'currentDate').and.returnValue("2014-11-11");
+    dateRange = DateRange(clock);
+
+    dateRange.useYear();
+
+    expectThatDateRange(dateRange).startsOn("2014-01-01").andEndsOn("2014-12-31");
+  });
+
   function expectThatDateRange(dateRange) {
     return {
       startsOn: function (startDate) {

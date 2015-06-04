@@ -14,6 +14,10 @@ var DateRange = (function() {
       useMonth: function() {
         period = "MONTH";
         updateRange(clock.currentDate());
+      },
+      useYear: function() {
+        period = "YEAR";
+        updateRange(clock.currentDate());
       }
     };
 
@@ -38,9 +42,12 @@ var DateRange = (function() {
       if(period === "WEEK") {
         startDate = monday(currentDate).toDate();
         endDate = sunday(currentDate).toDate();
-      } else {
+      } else if(period === "MONTH") {
         startDate = firstDayOfMonth(currentDate).toDate();
         endDate = lastDayOfMonth(currentDate).toDate();
+      } else {
+        startDate = moment(currentDate).dayOfYear(1).toDate();
+        endDate = moment(currentDate).dayOfYear(1).add(1,"years").add(-1, "days").toDate();
       }
     }
   };
