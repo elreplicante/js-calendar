@@ -62,11 +62,11 @@ var DateRange = (function() {
         },
 
         nextDate: function(currentDate) {
-          return dateFns.nextMonth(currentDate);
+          return dateFns.oneMonthAheadOf(currentDate);
         },
 
         previousDate: function(currentDate) {
-          return dateFns.previousMonth(currentDate);
+          return dateFns.oneMonthBackFrom(currentDate);
         }
 
       };
@@ -82,11 +82,11 @@ var DateRange = (function() {
         },
 
         nextDate: function(currentDate) {
-          return dateFns.nextWeek(currentDate);
+          return dateFns.oneWeekAheadOf(currentDate);
         },
 
         previousDate: function(currentDate) {
-          return dateFns.previousWeek(currentDate);
+          return dateFns.oneWeekBackFrom(currentDate);
         }
       };
     }
@@ -101,7 +101,7 @@ var DateRange = (function() {
         },
 
         nextDate: function(currentDate) {
-          return dateFns.nextYear(currentDate);
+          return dateFns.oneYearAheadOf(currentDate);
         }
       };
     }

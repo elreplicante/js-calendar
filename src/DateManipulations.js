@@ -61,10 +61,10 @@ var dateManipulations = (function() {
     lastDayOfWeek: dateOf(lastDayOfWeek),
     firstDayOfMonth: dateOf(firstDayOfMonth),
     lastDayOfMonth: dateOf(lastDayOfMonth),
-    nextWeek: dateOf(oneWeekAhead),
-    nextMonth: dateOf(oneMonthAhead),
-    nextYear: dateOf(oneYearAhead),
-    previousWeek: dateOf(oneWeekBack),
-    previousMonth: dateOf(oneMonthBack)
+    oneWeekAheadOf: dateOf(oneWeekAhead),
+    oneMonthAheadOf: dateOf(oneMonthAhead),
+    oneYearAheadOf: dateOf(oneYearAhead),
+    oneWeekBackFrom: dateOf(oneWeekBack),
+    oneMonthBackFrom: dateOf(oneMonthBack)
   };
 })();
