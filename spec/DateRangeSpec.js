@@ -128,7 +128,6 @@ describe('DateRange', function() {
 
       expectThatDateRange(dateRange).startsOn("2014-01-01").andEndsOn("2014-12-31");
     });
-
   });
 
   function expectThatDateRange(dateRange) {
