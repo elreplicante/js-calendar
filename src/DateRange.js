@@ -30,7 +30,10 @@ var DateRange = (function() {
     };
 
     function nextRange() {
-      setRange(moment("2014-11-17").toDate(), moment("2014-11-23").toDate());
+      setRange(
+        dateFns.firstDayOfWeek(dateFns.nextWeek(clock.currentDate())),
+        dateFns.lastDayOfWeek(dateFns.nextWeek(clock.currentDate()))
+      );
     }
 
     function updateRangeUsingNewPeriod(newPeriod) {

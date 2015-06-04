@@ -24,6 +24,10 @@ var dateManipulations = (function() {
     return firstDayOfMonth(date).add(daysInMonth - 1, "days");
   }
 
+  function forwardOneWeekFrom(date) {
+    return moment(date).add(1, "weeks");
+  }
+
   function dateOf(fn) {
     return function(date) {
       return fn(date).toDate();
@@ -36,6 +40,7 @@ var dateManipulations = (function() {
     firstDayOfWeek: dateOf(firstDayOfWeek),
     lastDayOfWeek: dateOf(lastDayOfWeek),
     firstDayOfMonth: dateOf(firstDayOfMonth),
-    lastDayOfMonth: dateOf(lastDayOfMonth)
+    lastDayOfMonth: dateOf(lastDayOfMonth),
+    nextWeek: dateOf(forwardOneWeekFrom)
   };
 })();
