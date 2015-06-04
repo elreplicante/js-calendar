@@ -1,12 +1,17 @@
 'use strict';
 
 var dateManipulations = (function() {
+  var DAYS = "days",
+    YEARS = "years",
+    MONTHS = "months",
+    WEEKS = "weeks";
+
   function firstDayOfYear(date) {
     return moment(date).dayOfYear(1);
   }
 
   function lastDayOfYear(date) {
-    return firstDayOfYear(date).add(1, "years").add(-1, "days");
+    return firstDayOfYear(date).add(1, YEARS).add(-1, DAYS);
   }
 
   function firstDayOfWeek(date) {
@@ -14,7 +19,7 @@ var dateManipulations = (function() {
   }
 
   function lastDayOfWeek(date) {
-    return firstDayOfWeek(date).add(6, "days");
+    return firstDayOfWeek(date).add(6, DAYS);
   }
 
   function firstDayOfMonth(date) {
@@ -23,31 +28,19 @@ var dateManipulations = (function() {
 
   function lastDayOfMonth(date) {
     var daysInMonth = moment(date).daysInMonth();
-    return firstDayOfMonth(date).add(daysInMonth - 1, "days");
+    return firstDayOfMonth(date).add(daysInMonth - 1, DAYS);
   }
 
-  function oneWeekAhead(date) {
-    return moment(date).add(1, "weeks");
+  function ahead(num, period) {
+    return function(date) {
+      return moment(date).add(num, period);
+    };
   }
 
-  function oneMonthAhead(date) {
-    return moment(date).add(1, "months");
-  }
-
-  function oneYearAhead(date) {
-    return moment(date).add(1, "years");
-  }
-
-  function oneWeekBack(date) {
-    return moment(date).add(-1, "weeks");
-  }
-
-  function oneMonthBack(date) {
-    return moment(date).add(-1, "months");
-  }
-
-  function oneYearBack(date) {
-    return moment(date).add(-1, "years");
+  function back(num, period) {
+    return function(date) {
+      return moment(date).add(-num, period);
+    };
   }
 
   function dateOf(fn) {
@@ -78,12 +71,12 @@ var dateManipulations = (function() {
   }
 
   return {
-    oneWeekAheadOf: dateOf(oneWeekAhead),
-    oneMonthAheadOf: dateOf(oneMonthAhead),
-    oneYearAheadOf: dateOf(oneYearAhead),
-    oneWeekBackFrom: dateOf(oneWeekBack),
-    oneMonthBackFrom: dateOf(oneMonthBack),
-    oneYearBackFrom: dateOf(oneYearBack),
+    oneWeekAheadOf: dateOf(ahead(1, WEEKS)),
+    oneMonthAheadOf: dateOf(ahead(1, MONTHS)),
+    oneYearAheadOf: dateOf(ahead(1, YEARS)),
+    oneWeekBackFrom: dateOf(back(1, WEEKS)),
+    oneMonthBackFrom: dateOf(back(1, MONTHS)),
+    oneYearBackFrom: dateOf(back(1, YEARS)),
     monthPeriodContaining: monthPeriodContaining,
     yearPeriodContaining: yearPeriodContaining,
     weekPeriodContaining: weekPeriodContaining
