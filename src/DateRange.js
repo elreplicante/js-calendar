@@ -22,6 +22,10 @@ var DateRange = (function() {
       useYear: function() {
         period = year;
         updateRange();
+      },
+      useWeek: function() {
+        period = week;
+        updateRange();
       }
     };
 

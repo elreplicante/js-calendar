@@ -29,6 +29,16 @@ describe('DateRange', function() {
     expectThatDateRange(dateRange).startsOn("2014-01-01").andEndsOn("2014-12-31");
   });
 
+  it('should show the current week when a week period is selected back', function() {
+    spyOn(clock, 'currentDate').and.returnValue("2014-11-11");
+    dateRange = DateRange(clock, dateManipulations);
+    dateRange.useYear();
+
+    dateRange.useWeek();
+
+    expectThatDateRange(dateRange).startsOn("2014-11-10").andEndsOn("2014-11-16");
+  });
+
   function expectThatDateRange(dateRange) {
     return {
       startsOn: function (startDate) {
