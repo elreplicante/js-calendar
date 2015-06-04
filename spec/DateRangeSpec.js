@@ -94,6 +94,24 @@ describe('DateRange', function() {
     });
   });
 
+  describe("when going back to current period", function() {
+    function moveAwayFromCurrentDate(dateRange) {
+      dateRange.previous();
+      dateRange.previous();
+      dateRange.previous();
+      dateRange.previous();
+      dateRange.next;
+    }
+
+    it('should contain the current week in case of using a week period', function() {
+      moveAwayFromCurrentDate(dateRange);
+
+      dateRange.current();
+
+      expectThatDateRange(dateRange).startsOn("2014-11-10").andEndsOn("2014-11-16");
+    });
+  });
+
   function expectThatDateRange(dateRange) {
     return {
       startsOn: function(startDate) {

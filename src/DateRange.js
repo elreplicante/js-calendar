@@ -26,8 +26,14 @@ var DateRange = (function() {
         updateRangeUsingNewPeriod(week);
       },
       next: next,
-      previous: previous
+      previous: previous,
+      current:current
     };
+
+    function current() {
+      currentDate = clock.currentDate();
+      period.updateRange(currentDate);
+    }
 
     function previous() {
       currentDate = period.previousDate(currentDate);
