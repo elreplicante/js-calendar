@@ -22,16 +22,24 @@ var DateRange = (function() {
     };
 
     function updateRange(currentDate) {
-      if(period === "WEEK") {
+      if(usingWeekPeriod()) {
         startDate = monday(currentDate).toDate();
         endDate = sunday(currentDate).toDate();
-      } else if(period === "MONTH") {
+      } else if(usingMonthPeriod()) {
         startDate = firstDayOfMonth(currentDate).toDate();
         endDate = lastDayOfMonth(currentDate).toDate();
       } else {
         startDate = firstDayOfYear(currentDate).toDate();
         endDate = lastDayOfYear(currentDate).toDate();
       }
+    }
+
+    function usingWeekPeriod() {
+      return period === "WEEK";
+    }
+
+    function usingMonthPeriod() {
+      return period === "MONTH";
     }
 
     function monday(date) {
