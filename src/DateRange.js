@@ -38,6 +38,14 @@ var DateRange = (function() {
       return firstDayOfMonth(date).add(daysInMonth - 1, "days");
     }
 
+    function firstDayOfYear(date) {
+      return moment(date).dayOfYear(1);
+    }
+
+    function lastDayOfYear(date) {
+      return firstDayOfYear(date).add(1,"years").add(-1, "days");
+    }
+
     function updateRange(currentDate) {
       if(period === "WEEK") {
         startDate = monday(currentDate).toDate();
@@ -46,8 +54,8 @@ var DateRange = (function() {
         startDate = firstDayOfMonth(currentDate).toDate();
         endDate = lastDayOfMonth(currentDate).toDate();
       } else {
-        startDate = moment(currentDate).dayOfYear(1).toDate();
-        endDate = moment(currentDate).dayOfYear(1).add(1,"years").add(-1, "days").toDate();
+        startDate = firstDayOfYear(currentDate).toDate();
+        endDate = lastDayOfYear(currentDate).toDate();
       }
     }
   };
