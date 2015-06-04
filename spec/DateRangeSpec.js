@@ -43,6 +43,14 @@ describe('DateRange', function() {
 
       expectThatDateRange(dateRange).startsOn("2014-11-17").andEndsOn("2014-11-23");
     });
+
+    it('should show the next month in case of a month period', function() {
+      dateRange.useMonth();
+
+      dateRange.next();
+
+      expectThatDateRange(dateRange).startsOn("2014-12-01").andEndsOn("2014-12-31");
+    });
   });
 
   describe('when moving two periods ahead', function() {

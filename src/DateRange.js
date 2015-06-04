@@ -7,7 +7,7 @@ var DateRange = (function() {
       period = week,
       currentDate = clock.currentDate();
 
-    updateRange();
+    period.updateRange(currentDate);
 
     return {
       startDate: function() {
@@ -31,19 +31,12 @@ var DateRange = (function() {
     };
 
     function nextRange() {
-      currentDate = dateFns.nextWeek(currentDate);
-      setRange(
-        dateFns.firstDayOfWeek(currentDate),
-        dateFns.lastDayOfWeek(currentDate)
-      );
+      currentDate = period.nextDate(currentDate);
+      period.updateRange(currentDate);
     }
 
     function updateRangeUsingNewPeriod(newPeriod) {
       period = newPeriod;
-      updateRange();
-    }
-
-    function updateRange() {
       period.updateRange(currentDate);
     }
 
@@ -59,7 +52,12 @@ var DateRange = (function() {
             dateFns.firstDayOfMonth(currentDate),
             dateFns.lastDayOfMonth(currentDate)
           );
+        },
+
+        nextDate: function(currentDate) {
+          return dateFns.nextMonth(currentDate);
         }
+
       };
     }
 
@@ -70,6 +68,10 @@ var DateRange = (function() {
             dateFns.firstDayOfWeek(currentDate),
             dateFns.lastDayOfWeek(currentDate)
           );
+        },
+
+        nextDate: function(currentDate) {
+          return dateFns.nextWeek(currentDate);
         }
       };
     }
@@ -81,6 +83,10 @@ var DateRange = (function() {
             dateFns.firstDayOfYear(currentDate),
             dateFns.lastDayOfYear(currentDate)
           );
+        },
+
+        nextDate: function(currentDate) {
+
         }
       };
     }
