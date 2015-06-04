@@ -1,8 +1,12 @@
 var DateRange = (function() {
-  return function(clock) {
-    var startDate, endDate, period = "WEEK";
+  return function(clock, dateFns) {
+    var startDate, endDate,
+      month = Month(dateFns),
+      week = Week(dateFns),
+      year = Year(dateFns),
+      period = week;
 
-    updateRange(clock.currentDate());
+    updateRange();
 
     return {
       startDate: function() {
@@ -12,36 +16,61 @@ var DateRange = (function() {
         return endDate;
       },
       useMonth: function() {
-        period = "MONTH";
-        updateRange(clock.currentDate());
+        updateRangeUsingNewPeriod(month);
+      },
+      useYear: function() {
+        updateRangeUsingNewPeriod(year);
+      },
+      useWeek: function() {
+        updateRangeUsingNewPeriod(week);
       }
     };
 
-    function monday(date) {
-      return moment(date).day("Monday");
+    function updateRangeUsingNewPeriod(newPeriod) {
+      period = newPeriod;
+      updateRange();
     }
 
-    function sunday(date) {
-      return monday(date).add(6, "days");
+    function updateRange() {
+      period.updateRange(clock.currentDate());
     }
 
-    function firstDayOfMonth(date) {
-      return moment(date).date(1);
+    function setRange(newStartDate, newEndDate) {
+      startDate = newStartDate.toDate();
+      endDate = newEndDate.toDate();
     }
 
-    function lastDayOfMonth(date) {
-      var daysInMonth = moment(date).daysInMonth();
-      return firstDayOfMonth(date).add(daysInMonth - 1, "days");
+    function Month(dateFns) {
+      return {
+        updateRange: function(currentDate) {
+          setRange(
+            dateFns.firstDayOfMonth(currentDate),
+            dateFns.lastDayOfMonth(currentDate)
+          );
+        }
+      };
     }
 
-    function updateRange(currentDate) {
-      if(period === "WEEK") {
-        startDate = monday(currentDate).toDate();
-        endDate = sunday(currentDate).toDate();
-      } else {
-        startDate = firstDayOfMonth(currentDate).toDate();
-        endDate = lastDayOfMonth(currentDate).toDate();
-      }
+    function Week(dateFns) {
+      return {
+        updateRange: function(currentDate) {
+          setRange(
+            dateFns.firstDayOfWeek(currentDate),
+            dateFns.lastDayOfWeek(currentDate)
+          );
+        }
+      };
+    }
+
+    function Year(dateFns) {
+      return {
+        updateRange: function(currentDate) {
+          setRange(
+            dateFns.firstDayOfYear(currentDate),
+            dateFns.lastDayOfYear(currentDate)
+          );
+        }
+      };
     }
   };
 })();
