@@ -51,6 +51,14 @@ describe('DateRange', function() {
 
       expectThatDateRange(dateRange).startsOn("2014-12-01").andEndsOn("2014-12-31");
     });
+
+    it('should show the next year in case of a year period', function() {
+      dateRange.useYear();
+
+      dateRange.next();
+
+      expectThatDateRange(dateRange).startsOn("2015-01-01").andEndsOn("2015-12-31");
+    });
   });
 
   describe('when moving two periods ahead', function() {

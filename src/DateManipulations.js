@@ -32,6 +32,10 @@ var dateManipulations = (function() {
     return moment(date).add(1, "months");
   }
 
+  function forwardOneYearFrom(date) {
+    return moment(date).add(1, "years");
+  }
+
   function dateOf(fn) {
     return function(date) {
       return fn(date).toDate();
@@ -46,6 +50,7 @@ var dateManipulations = (function() {
     firstDayOfMonth: dateOf(firstDayOfMonth),
     lastDayOfMonth: dateOf(lastDayOfMonth),
     nextWeek: dateOf(forwardOneWeekFrom),
-    nextMonth: dateOf(forwardOneMonthFrom)
+    nextMonth: dateOf(forwardOneMonthFrom),
+    nextYear: dateOf(forwardOneYearFrom)
   };
 })();

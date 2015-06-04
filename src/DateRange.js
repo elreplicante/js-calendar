@@ -86,7 +86,7 @@ var DateRange = (function() {
         },
 
         nextDate: function(currentDate) {
-
+          return dateFns.nextYear(currentDate);
         }
       };
     }
