@@ -1,16 +1,11 @@
 var DateRange = (function() {
   return function(clock, dateFns) {
-    var dateRange = {
-        startDate: void 0,
-        endDate: void 0
-      },
-      month = Month(dateFns),
+    var month = Month(dateFns),
       week = Week(dateFns),
       year = Year(dateFns),
       period = week,
-      currentDate = clock.currentDate();
-
-    period.rangeFor(currentDate);
+      currentDate = clock.currentDate(),
+      dateRange = period.rangeFor(currentDate);
 
     return {
       startDate: function() {
@@ -35,28 +30,28 @@ var DateRange = (function() {
 
     function current() {
       currentDate = clock.currentDate();
-      period.rangeFor(currentDate);
+      dateRange = period.rangeFor(currentDate);
     }
 
     function previous() {
       currentDate = period.previousDate(currentDate);
-      period.rangeFor(currentDate);
+      dateRange = period.rangeFor(currentDate);
     }
 
     function next() {
       currentDate = period.nextDate(currentDate);
-      period.rangeFor(currentDate);
+      dateRange = period.rangeFor(currentDate);
     }
 
     function updateRangeUsingNewPeriod(newPeriod) {
       period = newPeriod;
-      period.rangeFor(currentDate);
+      dateRange = period.rangeFor(currentDate);
     }
 
     function Month(dateFns) {
       return {
         rangeFor: function(currentDate) {
-          dateRange = dateFns.monthPeriodContaining(currentDate);
+          return dateFns.monthPeriodContaining(currentDate);
         },
 
         nextDate: function(currentDate) {
@@ -72,7 +67,7 @@ var DateRange = (function() {
     function Week(dateFns) {
       return {
         rangeFor: function(currentDate) {
-          dateRange = dateFns.weekPeriodContaining(currentDate);
+          return dateFns.weekPeriodContaining(currentDate);
         },
 
         nextDate: function(currentDate) {
@@ -88,7 +83,7 @@ var DateRange = (function() {
     function Year(dateFns) {
       return {
         rangeFor: function(currentDate) {
-          dateRange = dateFns.yearPeriodContaining(currentDate);
+          return dateFns.yearPeriodContaining(currentDate);
         },
 
         nextDate: function(currentDate) {
