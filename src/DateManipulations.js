@@ -44,6 +44,10 @@ var dateManipulations = (function() {
     return moveDate(date, "months", -1);
   }
 
+  function oneYearBack(date) {
+    return moveDate(date, "years", -1);
+  }
+
   function moveDate(date, period, displacement) {
     return moment(date).add(displacement, period)
   }
@@ -65,6 +69,7 @@ var dateManipulations = (function() {
     oneMonthAheadOf: dateOf(oneMonthAhead),
     oneYearAheadOf: dateOf(oneYearAhead),
     oneWeekBackFrom: dateOf(oneWeekBack),
-    oneMonthBackFrom: dateOf(oneMonthBack)
+    oneMonthBackFrom: dateOf(oneMonthBack),
+    oneYearBackFrom: dateOf(oneYearBack)
   };
 })();

@@ -102,6 +102,10 @@ var DateRange = (function() {
 
         nextDate: function(currentDate) {
           return dateFns.oneYearAheadOf(currentDate);
+        },
+
+        previousDate: function(currentDate) {
+          return dateFns.oneYearBackFrom(currentDate);
         }
       };
     }
