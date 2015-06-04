@@ -25,11 +25,8 @@ var DateRange = (function() {
       useWeek: function() {
         updateRangeUsingNewPeriod(week);
       },
-      next: function() {
-        nextRange();
-      },
+      next: next,
       previous: previous
-
     };
 
     function previous() {
@@ -37,7 +34,7 @@ var DateRange = (function() {
       period.updateRange(currentDate);
     }
 
-    function nextRange() {
+    function next() {
       currentDate = period.nextDate(currentDate);
       period.updateRange(currentDate);
     }
