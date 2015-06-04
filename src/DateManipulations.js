@@ -25,27 +25,27 @@ var dateManipulations = (function() {
   }
 
   function oneWeekAhead(date) {
-    return moment(date).add("weeks", 1);
+    return moment(date).add(1, "weeks");
   }
 
   function oneMonthAhead(date) {
-    return moment(date).add("months", 1);
+    return moment(date).add(1, "months");
   }
 
   function oneYearAhead(date) {
-    return moment(date).add("years", 1);
+    return moment(date).add(1, "years");
   }
 
   function oneWeekBack(date) {
-    return moment(date).add("weeks", -1);
+    return moment(date).add(-1, "weeks");
   }
 
   function oneMonthBack(date) {
-    return moment(date).add("months", -1);
+    return moment(date).add(-1, "months");
   }
 
   function oneYearBack(date) {
-    return moment(date).add("years", -1);
+    return moment(date).add(-1, "years");
   }
 
   function dateOf(fn) {
@@ -74,7 +74,6 @@ var dateManipulations = (function() {
       endDate: lastDayOfWeek(date).toDate()
     };
   }
-
 
   return {
     oneWeekAheadOf: dateOf(oneWeekAhead),
