@@ -1,3 +1,5 @@
+'use strict';
+
 var DateRange = (function() {
   return function(clock, dateFns) {
     var month = Month(dateFns),

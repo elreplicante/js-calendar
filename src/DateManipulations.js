@@ -1,3 +1,5 @@
+'use strict';
+
 var dateManipulations = (function() {
   function firstDayOfYear(date) {
     return moment(date).dayOfYear(1);
