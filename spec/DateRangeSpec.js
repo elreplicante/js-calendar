@@ -110,6 +110,25 @@ describe('DateRange', function() {
 
       expectThatDateRange(dateRange).startsOn("2014-11-10").andEndsOn("2014-11-16");
     });
+
+    it('should contain the current month in case of using a month period', function() {
+      dateRange.useMonth();
+      moveAwayFromCurrentDate(dateRange);
+
+      dateRange.current();
+
+      expectThatDateRange(dateRange).startsOn("2014-11-01").andEndsOn("2014-11-30");
+    });
+
+    it('should contain the current year in case of using a year period', function() {
+      dateRange.useYear();
+      moveAwayFromCurrentDate(dateRange);
+
+      dateRange.current();
+
+      expectThatDateRange(dateRange).startsOn("2014-01-01").andEndsOn("2014-12-31");
+    });
+
   });
 
   function expectThatDateRange(dateRange) {
