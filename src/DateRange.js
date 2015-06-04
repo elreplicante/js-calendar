@@ -49,6 +49,7 @@ var DateRange = (function() {
       },
       useYear: function() {
         period = YEAR_PERIOD;
+        periodObject = Year;
         updateRange(clock.currentDate());
       }
     };
@@ -59,7 +60,7 @@ var DateRange = (function() {
       } else if (usingMonthPeriod()) {
         periodObject.updateRange(currentDate);
       } else {
-        setRange(firstDayOfYear(currentDate), lastDayOfYear(currentDate));
+        periodObject.updateRange(currentDate);
       }
     }
 
