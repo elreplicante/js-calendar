@@ -53,11 +53,6 @@ var DateRange = (function() {
       period.updateRange(currentDate);
     }
 
-    function setRange(newStartDate, newEndDate) {
-      dateRange.startDate = newStartDate;
-      dateRange.endDate = newEndDate;
-    }
-
     function Month(dateFns) {
       return {
         updateRange: function(currentDate) {
