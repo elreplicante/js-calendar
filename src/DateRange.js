@@ -16,18 +16,20 @@ var DateRange = (function() {
         return endDate;
       },
       useMonth: function() {
-        period = month;
-        updateRange();
+        updateRangeUsingNewPeriod(month);
       },
       useYear: function() {
-        period = year;
-        updateRange();
+        updateRangeUsingNewPeriod(year);
       },
       useWeek: function() {
-        period = week;
-        updateRange();
+        updateRangeUsingNewPeriod(week);
       }
     };
+
+    function updateRangeUsingNewPeriod(newPeriod) {
+      period = newPeriod;
+      updateRange();
+    }
 
     function updateRange() {
       period.updateRange(clock.currentDate());
