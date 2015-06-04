@@ -10,7 +10,7 @@ var DateRange = (function() {
       period = week,
       currentDate = clock.currentDate();
 
-    period.updateRange(currentDate);
+    period.rangeFor(currentDate);
 
     return {
       startDate: function() {
@@ -35,27 +35,27 @@ var DateRange = (function() {
 
     function current() {
       currentDate = clock.currentDate();
-      period.updateRange(currentDate);
+      period.rangeFor(currentDate);
     }
 
     function previous() {
       currentDate = period.previousDate(currentDate);
-      period.updateRange(currentDate);
+      period.rangeFor(currentDate);
     }
 
     function next() {
       currentDate = period.nextDate(currentDate);
-      period.updateRange(currentDate);
+      period.rangeFor(currentDate);
     }
 
     function updateRangeUsingNewPeriod(newPeriod) {
       period = newPeriod;
-      period.updateRange(currentDate);
+      period.rangeFor(currentDate);
     }
 
     function Month(dateFns) {
       return {
-        updateRange: function(currentDate) {
+        rangeFor: function(currentDate) {
           dateRange = dateFns.monthPeriodContaining(currentDate);
         },
 
@@ -71,7 +71,7 @@ var DateRange = (function() {
 
     function Week(dateFns) {
       return {
-        updateRange: function(currentDate) {
+        rangeFor: function(currentDate) {
           dateRange = dateFns.weekPeriodContaining(currentDate);
         },
 
@@ -87,7 +87,7 @@ var DateRange = (function() {
 
     function Year(dateFns) {
       return {
-        updateRange: function(currentDate) {
+        rangeFor: function(currentDate) {
           dateRange = dateFns.yearPeriodContaining(currentDate);
         },
 
