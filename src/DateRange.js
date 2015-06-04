@@ -1,12 +1,6 @@
 var DateRange = (function() {
   return function(clock) {
-    var startDate,
-      endDate,
-      WEEK_PERIOD = "WEEK",
-      MONTH_PERIOD = "MONTH",
-      YEAR_PERIOD = "YEAR",
-      period = WEEK_PERIOD,
-
+    var startDate, endDate,
       Month = (function() {
         return {
           updateRange: function(currentDate) {
@@ -31,7 +25,7 @@ var DateRange = (function() {
         };
       })(),
 
-      periodObject = Week;
+      period = Week;
 
     updateRange(clock.currentDate());
 
@@ -43,38 +37,22 @@ var DateRange = (function() {
         return endDate;
       },
       useMonth: function() {
-        period = MONTH_PERIOD;
-        periodObject = Month;
+        period = Month;
         updateRange(clock.currentDate());
       },
       useYear: function() {
-        period = YEAR_PERIOD;
-        periodObject = Year;
+        period = Year;
         updateRange(clock.currentDate());
       }
     };
 
     function updateRange(currentDate) {
-      if (usingWeekPeriod()) {
-        periodObject.updateRange(currentDate);
-      } else if (usingMonthPeriod()) {
-        periodObject.updateRange(currentDate);
-      } else {
-        periodObject.updateRange(currentDate);
-      }
+      period.updateRange(currentDate);
     }
 
     function setRange(newStartDate, newEndDate) {
       startDate = newStartDate.toDate();
       endDate = newEndDate.toDate();
-    }
-
-    function usingWeekPeriod() {
-      return period === WEEK_PERIOD;
-    }
-
-    function usingMonthPeriod() {
-      return period === MONTH_PERIOD;
     }
 
     function monday(date) {
