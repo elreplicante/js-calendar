@@ -27,7 +27,7 @@ var DateRange = (function() {
 
       period = Week;
 
-    updateRange(clock.currentDate());
+    updateRange();
 
     return {
       startDate: function() {
@@ -38,16 +38,16 @@ var DateRange = (function() {
       },
       useMonth: function() {
         period = Month;
-        updateRange(clock.currentDate());
+        updateRange();
       },
       useYear: function() {
         period = Year;
-        updateRange(clock.currentDate());
+        updateRange();
       }
     };
 
-    function updateRange(currentDate) {
-      period.updateRange(currentDate);
+    function updateRange() {
+      period.updateRange(clock.currentDate());
     }
 
     function setRange(newStartDate, newEndDate) {
