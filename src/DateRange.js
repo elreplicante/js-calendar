@@ -97,10 +97,11 @@ var DateRange = (function() {
     function Year(dateFns) {
       return {
         updateRange: function(currentDate) {
-          setRange(
-            dateFns.firstDayOfYear(currentDate),
-            dateFns.lastDayOfYear(currentDate)
-          );
+          // setRange(
+          //   dateFns.firstDayOfYear(currentDate),
+          //   dateFns.lastDayOfYear(currentDate)
+          // );
+          dateRange = dateFns.yearPeriodContaining(currentDate);
         },
 
         nextDate: function(currentDate) {

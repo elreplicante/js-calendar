@@ -65,9 +65,14 @@ var dateManipulations = (function() {
     };
   }
 
+  function yearPeriodContaining(date) {
+    return {
+      startDate: firstDayOfYear(date).toDate(),
+      endDate: lastDayOfYear(date).toDate()
+    };
+  }
+
   return {
-    firstDayOfYear: dateOf(firstDayOfYear),
-    lastDayOfYear: dateOf(lastDayOfYear),
     firstDayOfWeek: dateOf(firstDayOfWeek),
     lastDayOfWeek: dateOf(lastDayOfWeek),
     oneWeekAheadOf: dateOf(oneWeekAhead),
@@ -76,6 +81,7 @@ var dateManipulations = (function() {
     oneWeekBackFrom: dateOf(oneWeekBack),
     oneMonthBackFrom: dateOf(oneMonthBack),
     oneYearBackFrom: dateOf(oneYearBack),
-    monthPeriodContaining: monthPeriodContaining
+    monthPeriodContaining: monthPeriodContaining,
+    yearPeriodContaining: yearPeriodContaining
   };
 })();
