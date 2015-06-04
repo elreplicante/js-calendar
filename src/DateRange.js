@@ -21,6 +21,19 @@ var DateRange = (function() {
       }
     };
 
+    function updateRange(currentDate) {
+      if(period === "WEEK") {
+        startDate = monday(currentDate).toDate();
+        endDate = sunday(currentDate).toDate();
+      } else if(period === "MONTH") {
+        startDate = firstDayOfMonth(currentDate).toDate();
+        endDate = lastDayOfMonth(currentDate).toDate();
+      } else {
+        startDate = firstDayOfYear(currentDate).toDate();
+        endDate = lastDayOfYear(currentDate).toDate();
+      }
+    }
+
     function monday(date) {
       return moment(date).day("Monday");
     }
@@ -44,19 +57,6 @@ var DateRange = (function() {
 
     function lastDayOfYear(date) {
       return firstDayOfYear(date).add(1,"years").add(-1, "days");
-    }
-
-    function updateRange(currentDate) {
-      if(period === "WEEK") {
-        startDate = monday(currentDate).toDate();
-        endDate = sunday(currentDate).toDate();
-      } else if(period === "MONTH") {
-        startDate = firstDayOfMonth(currentDate).toDate();
-        endDate = lastDayOfMonth(currentDate).toDate();
-      } else {
-        startDate = firstDayOfYear(currentDate).toDate();
-        endDate = lastDayOfYear(currentDate).toDate();
-      }
     }
   };
 })();
