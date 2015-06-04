@@ -23,15 +23,17 @@ var DateRange = (function() {
 
     function updateRange(currentDate) {
       if(usingWeekPeriod()) {
-        startDate = monday(currentDate).toDate();
-        endDate = sunday(currentDate).toDate();
+        setRange(monday(currentDate), sunday(currentDate));
       } else if(usingMonthPeriod()) {
-        startDate = firstDayOfMonth(currentDate).toDate();
-        endDate = lastDayOfMonth(currentDate).toDate();
+        setRange(firstDayOfMonth(currentDate), lastDayOfMonth(currentDate));
       } else {
-        startDate = firstDayOfYear(currentDate).toDate();
-        endDate = lastDayOfYear(currentDate).toDate();
+        setRange(firstDayOfYear(currentDate), lastDayOfYear(currentDate));
       }
+    }
+
+    function setRange(newStartDate, newEndDate) {
+      startDate = newStartDate.toDate();
+      endDate = newEndDate.toDate();
     }
 
     function usingWeekPeriod() {
