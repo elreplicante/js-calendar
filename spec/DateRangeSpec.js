@@ -45,6 +45,15 @@ describe('DateRange', function() {
     });
   });
 
+  describe('when moving two periods ahead', function() {
+    it('should show the week after the next week in case of a week period', function() {
+      dateRange.next();
+      dateRange.next();
+
+      expectThatDateRange(dateRange).startsOn("2014-11-24").andEndsOn("2014-11-30");
+    });
+  });
+
   function expectThatDateRange(dateRange) {
     return {
       startsOn: function(startDate) {

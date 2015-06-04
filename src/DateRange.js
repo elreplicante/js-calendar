@@ -4,7 +4,8 @@ var DateRange = (function() {
       month = Month(dateFns),
       week = Week(dateFns),
       year = Year(dateFns),
-      period = week;
+      period = week,
+      currentDate = clock.currentDate();
 
     updateRange();
 
@@ -30,9 +31,10 @@ var DateRange = (function() {
     };
 
     function nextRange() {
+      currentDate = dateFns.nextWeek(currentDate);
       setRange(
-        dateFns.firstDayOfWeek(dateFns.nextWeek(clock.currentDate())),
-        dateFns.lastDayOfWeek(dateFns.nextWeek(clock.currentDate()))
+        dateFns.firstDayOfWeek(currentDate),
+        dateFns.lastDayOfWeek(currentDate)
       );
     }
 
@@ -42,7 +44,7 @@ var DateRange = (function() {
     }
 
     function updateRange() {
-      period.updateRange(clock.currentDate());
+      period.updateRange(currentDate);
     }
 
     function setRange(newStartDate, newEndDate) {
