@@ -13,9 +13,15 @@ var dateManipulations = (function() {
     oneWeekBackFrom: dateOf(back(1, WEEKS)),
     oneMonthBackFrom: dateOf(back(1, MONTHS)),
     oneYearBackFrom: dateOf(back(1, YEARS)),
-    monthPeriodContaining: monthPeriodContaining,
-    yearPeriodContaining: yearPeriodContaining,
-    weekPeriodContaining: weekPeriodContaining
+    monthPeriodContaining: rangeBetween(
+      dateOf(firstDayOfMonth), dateOf(lastDayOfMonth)
+    ),
+    yearPeriodContaining: rangeBetween(
+      dateOf(firstDayOfYear), dateOf(lastDayOfYear)
+    ),
+    weekPeriodContaining: rangeBetween(
+      dateOf(firstDayOfWeek), dateOf(lastDayOfWeek)
+    )
   };
 
   function firstDayOfYear(date) {
@@ -61,24 +67,12 @@ var dateManipulations = (function() {
     };
   }
 
-  function monthPeriodContaining(date) {
-    return {
-      startDate: firstDayOfMonth(date).toDate(),
-      endDate: lastDayOfMonth(date).toDate()
-    };
-  }
-
-  function yearPeriodContaining(date) {
-    return {
-      startDate: firstDayOfYear(date).toDate(),
-      endDate: lastDayOfYear(date).toDate()
-    };
-  }
-
-  function weekPeriodContaining(date) {
-    return {
-      startDate: firstDayOfWeek(date).toDate(),
-      endDate: lastDayOfWeek(date).toDate()
+  function rangeBetween(getStartDate, getEndDate) {
+    return function(date) {
+      return {
+        startDate: getStartDate(date),
+        endDate: getEndDate(date)
+      };
     };
   }
 })();
