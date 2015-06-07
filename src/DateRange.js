@@ -1,10 +1,10 @@
 'use strict';
 
 var DateRange = (function() {
-  return function(clock, dateFns) {
-    var month = Month(dateFns),
-      week = Week(dateFns),
-      year = Year(dateFns),
+  return function(clock, periods) {
+    var month = periods.Month(),
+      week = periods.Week(),
+      year = periods.Year(),
       period = week,
       currentDate = clock.currentDate(),
       dateRange = period.rangeFor(currentDate);
@@ -62,38 +62,6 @@ var DateRange = (function() {
 
         previousDate: function(currentDate) {
           return dateFns.oneMonthBackFrom(currentDate);
-        }
-      };
-    }
-
-    function Week(dateFns) {
-      return {
-        rangeFor: function(currentDate) {
-          return dateFns.weekPeriodContaining(currentDate);
-        },
-
-        nextDate: function(currentDate) {
-          return dateFns.oneWeekAheadOf(currentDate);
-        },
-
-        previousDate: function(currentDate) {
-          return dateFns.oneWeekBackFrom(currentDate);
-        }
-      };
-    }
-
-    function Year(dateFns) {
-      return {
-        rangeFor: function(currentDate) {
-          return dateFns.yearPeriodContaining(currentDate);
-        },
-
-        nextDate: function(currentDate) {
-          return dateFns.oneYearAheadOf(currentDate);
-        },
-
-        previousDate: function(currentDate) {
-          return dateFns.oneYearBackFrom(currentDate);
         }
       };
     }

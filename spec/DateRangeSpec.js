@@ -6,7 +6,7 @@ describe('DateRange', function() {
   beforeEach(function() {
     clock = Clock();
     spyOn(clock, 'currentDate').and.returnValue("2014-11-11");
-    dateRange = DateRange(clock, dateManipulations);
+    dateRange = DateRange(clock, periodsUsingMoment);
   });
 
   describe('on creation', function() {
