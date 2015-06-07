@@ -49,21 +49,5 @@ var DateRange = (function() {
       period = newPeriod;
       dateRange = period.rangeFor(currentDate);
     }
-
-    function Month(dateFns) {
-      return {
-        rangeFor: function(currentDate) {
-          return dateFns.monthPeriodContaining(currentDate);
-        },
-
-        nextDate: function(currentDate) {
-          return dateFns.oneMonthAheadOf(currentDate);
-        },
-
-        previousDate: function(currentDate) {
-          return dateFns.oneMonthBackFrom(currentDate);
-        }
-      };
-    }
   };
 })();
