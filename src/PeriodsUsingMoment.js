@@ -1,3 +1,5 @@
+'use strict';
+
 var periodsUsingMoment = (function() {
   var DAYS = "days",
     YEARS = "years",
