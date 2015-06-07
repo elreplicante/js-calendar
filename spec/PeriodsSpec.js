@@ -10,7 +10,7 @@ describe('Periods', function() {
       function() {
         var dateRange = week.rangeFor(moment("2014-11-11").toDate());
 
-        expectThatDateRange(dateRange).startsOn("2014-11-10").andEndsOn("2014-11-16");
+        expectsThat.dateRange(dateRange).startsOn("2014-11-10").andEndsOn("2014-11-16");
       }
     );
 
@@ -38,7 +38,7 @@ describe('Periods', function() {
       function() {
         var dateRange = month.rangeFor(moment("2014-11-11").toDate());
 
-        expectThatDateRange(dateRange).startsOn("2014-11-01").andEndsOn("2014-11-30");
+        expectsThat.dateRange(dateRange).startsOn("2014-11-01").andEndsOn("2014-11-30");
       }
     );
 
@@ -66,7 +66,7 @@ describe('Periods', function() {
       function() {
         var dateRange = year.rangeFor(moment("2014-11-11").toDate());
 
-        expectThatDateRange(dateRange).startsOn("2014-01-01").andEndsOn("2014-12-31");
+        expectsThat.dateRange(dateRange).startsOn("2014-01-01").andEndsOn("2014-12-31");
       }
     );
 
@@ -86,17 +86,4 @@ describe('Periods', function() {
       }
     );
   });
-
-  function expectThatDateRange(dateRange) {
-    return {
-      startsOn: function(startDate) {
-        return {
-          andEndsOn: function(endDate) {
-            expect(dateRange.startDate).toEqual(moment(startDate).toDate());
-            expect(dateRange.endDate).toEqual(moment(endDate).toDate());
-          }
-        };
-      }
-    };
-  }
 });
