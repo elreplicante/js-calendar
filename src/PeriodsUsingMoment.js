@@ -2,22 +2,7 @@ var periodsUsingMoment = (function() {
   var DAYS = "days",
     YEARS = "years",
     MONTHS = "months",
-    WEEKS = "weeks",
-    oneWeekAheadOf = dateOf(ahead(1, WEEKS)),
-    oneMonthAheadOf = dateOf(ahead(1, MONTHS)),
-    oneYearAheadOf = dateOf(ahead(1, YEARS)),
-    oneWeekBackFrom = dateOf(back(1, WEEKS)),
-    oneMonthBackFrom = dateOf(back(1, MONTHS)),
-    oneYearBackFrom = dateOf(back(1, YEARS)),
-    monthPeriodContaining = rangeBetween(
-      dateOf(firstDayOfMonth), dateOf(lastDayOfMonth)
-    ),
-    yearPeriodContaining = rangeBetween(
-      dateOf(firstDayOfYear), dateOf(lastDayOfYear)
-    ),
-    weekPeriodContaining = rangeBetween(
-      dateOf(firstDayOfWeek), dateOf(lastDayOfWeek)
-    );
+    WEEKS = "weeks";
 
   return {
     Month: Month,
@@ -27,49 +12,52 @@ var periodsUsingMoment = (function() {
 
   function Month() {
     return {
-      rangeFor: function(currentDate) {
-        return monthPeriodContaining(currentDate);
-      },
+      rangeFor: rangeBetween(
+        dateOf(firstDayOfMonth), dateOf(lastDayOfMonth)
+      ),
 
-      nextDate: function(currentDate) {
-        return oneMonthAheadOf(currentDate);
-      },
+      nextDate: dateOf(ahead(1, MONTHS)),
 
-      previousDate: function(currentDate) {
-        return oneMonthBackFrom(currentDate);
-      }
+      previousDate: dateOf(back(1, MONTHS))
     };
   }
 
   function Week() {
     return {
-      rangeFor: function(currentDate) {
-        return weekPeriodContaining(currentDate);
-      },
+      rangeFor: rangeBetween(
+        dateOf(firstDayOfWeek), dateOf(lastDayOfWeek)
+      ),
 
-      nextDate: function(currentDate) {
-        return oneWeekAheadOf(currentDate);
-      },
+      nextDate: dateOf(ahead(1, WEEKS)),
 
-      previousDate: function(currentDate) {
-        return oneWeekBackFrom(currentDate);
-      }
+      previousDate: dateOf(back(1, WEEKS))
     };
   }
 
   function Year() {
     return {
-      rangeFor: function(currentDate) {
-        return yearPeriodContaining(currentDate);
-      },
+      rangeFor: rangeBetween(
+        dateOf(firstDayOfYear), dateOf(lastDayOfYear)
+      ),
 
-      nextDate: function(currentDate) {
-        return oneYearAheadOf(currentDate);
-      },
+      nextDate: dateOf(ahead(1, YEARS)),
 
-      previousDate: function(currentDate) {
-        return oneYearBackFrom(currentDate);
-      }
+      previousDate: dateOf(back(1, YEARS))
+    };
+  }
+
+  function dateOf(fn) {
+    return function(date) {
+      return fn(date).toDate();
+    };
+  }
+
+  function rangeBetween(getStartDate, getEndDate) {
+    return function(date) {
+      return {
+        startDate: getStartDate(date),
+        endDate: getEndDate(date)
+      };
     };
   }
 
@@ -107,21 +95,6 @@ var periodsUsingMoment = (function() {
   function back(num, period) {
     return function(date) {
       return moment(date).add(-num, period);
-    };
-  }
-
-  function dateOf(fn) {
-    return function(date) {
-      return fn(date).toDate();
-    };
-  }
-
-  function rangeBetween(getStartDate, getEndDate) {
-    return function(date) {
-      return {
-        startDate: getStartDate(date),
-        endDate: getEndDate(date)
-      };
     };
   }
 })();
