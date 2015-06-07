@@ -5,7 +5,7 @@ describe('DateRange', function() {
 
   beforeEach(function() {
     clock = Clock();
-    spyOn(clock, 'currentDate').and.returnValue("2014-11-11");
+    spyOn(clock, 'currentDate').and.returnValue(moment("2014-11-11").toDate());
     dateRange = DateRange(clock, periodsUsingMoment);
   });
 
