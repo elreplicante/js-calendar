@@ -1,6 +1,6 @@
 'use strict';
 
-function periodsInterfaceBehavior(concretePeriodsImplementation) {
+function correctlyImplementsPeriodsInterfaceBehavior(concretePeriodsImplementation) {
   describe('Periods', function() {
     var periods = concretePeriodsImplementation;
 
